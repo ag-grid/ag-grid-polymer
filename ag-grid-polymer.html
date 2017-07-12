@@ -19,9 +19,8 @@
         static addProperties(target, properties, type) {
             properties
                 .forEach((key) => {
-                    target[key.toLowerCase()] = {
-                        type
-                    }
+                    target[key.toLowerCase()] = type;
+                    target[key] = type;
                 });
         }
 
@@ -30,8 +29,6 @@
 
             this._gridOptions = {};
             this._attributes = {};
-
-            this._debounce = false;
 
             this._propertyMap = this.createPropertyMap();
 
@@ -80,6 +77,11 @@
             // prevent instantiating multiple grids
             if (!this._initialised) {
                 let globalEventListener = this.globalEventListener.bind(this);
+
+                // read un-bound properties directly off the element
+                this._gridOptions = agGrid.ComponentUtil.copyAttributesToGridOptions(this._gridOptions, this);
+
+                // ready bound  off of the mapped attributes property
                 this._gridOptions = agGrid.ComponentUtil.copyAttributesToGridOptions(this._gridOptions, this._attributes);
 
                 let gridParams = {
@@ -96,7 +98,6 @@
         }
 
         _gridPropertyChanged(name, newValue) {
-            console.log(name, newValue);
             let gridPropertyName = this._propertyMap[name];
 
             // for properties set before gridOptions is called
@@ -110,21 +111,6 @@
                 agGrid.ComponentUtil.processOnChange(changeObject, this._gridOptions, this.api, this.columnApi);
             }
         }
-
-        debounce(func, wait, immediate) {
-            let timeout;
-            return function () {
-                const context = this, args = arguments;
-                const later = function () {
-                    timeout = null;
-                    if (!immediate) func.apply(context, args);
-                };
-                const callNow = immediate && !timeout;
-                clearTimeout(timeout);
-                timeout = setTimeout(later, wait);
-                if (callNow) func.apply(context, args);
-            };
-        };
 
         // for direct dom access
         attributeChanged(attrname, oldval, newval) {
