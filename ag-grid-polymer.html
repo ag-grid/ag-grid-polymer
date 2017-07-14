@@ -1,5 +1,5 @@
 <script>
-    class AgGrid extends Polymer.Element {
+    class AgGrid extends Polymer.LegacyElementMixin(Polymer.Element) {
         static get is() {
             return "ag-grid-polymer";
         }
@@ -33,8 +33,14 @@
             this._propertyMap = this.createPropertyMap();
 
             agGrid.ComponentUtil.ALL_PROPERTIES.forEach((property) => {
+                let observerName = property + 'PropertyChanged';
+                this[observerName] = (newVal) => {
+                    this._gridPropertyChanged(property, newVal);
+                };
+                this._createPropertyObserver(property, observerName);
+
                 let propertyToLowerCase = property.toLowerCase();
-                let observerName = propertyToLowerCase + 'PropertyChanged';
+                observerName = propertyToLowerCase + 'PropertyChanged';
                 this[observerName] = (newVal) => {
                     this._gridPropertyChanged(propertyToLowerCase, newVal);
                 };
@@ -98,7 +104,7 @@
         }
 
         _gridPropertyChanged(name, newValue) {
-            let gridPropertyName = this._propertyMap[name];
+            let gridPropertyName = this._propertyMap[name] || name;
 
             // for properties set before gridOptions is called
             this._attributes[gridPropertyName] = newValue;
@@ -111,12 +117,6 @@
                 agGrid.ComponentUtil.processOnChange(changeObject, this._gridOptions, this.api, this.columnApi);
             }
         }
-
-        // for direct dom access
-        attributeChanged(attrname, oldval, newval) {
-            console.log(attrname, "attributeChanged");
-        }
-
 
         globalEventListener(eventType, event) {
             let eventLowerCase = eventType.toLowerCase();
@@ -137,7 +137,10 @@
             // for when defining events component (ie onGridReady=[[someEvent]])
             callbackMethod = this._propertyMap[callbackMethod];
             if (typeof this[callbackMethod] === 'function') {
-                this[callbackMethod](browserEvent);
+                // binding the method to the containing (the end users) element
+                // effectively the same as the end user doing event=myEvent.bind(this)
+                // allows end users to have access to their "this", as opposed to ag-grid-polymers "this"
+                this[callbackMethod].bind(Polymer.dom(this).getOwnerRoot().host)(browserEvent);
             }
         };
 
