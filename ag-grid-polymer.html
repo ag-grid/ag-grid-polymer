@@ -1,3 +1,8 @@
+<script src="src/PolymerComponentFactory.js"></script>
+<script src="src/BaseFrameworkComponent.js"></script>
+<script src="src/PolymerFrameworkFactory.js"></script>
+<script src="src/PolymerFrameworkComponentWrapper.js"></script>
+
 <script>
     class AgGrid extends Polymer.LegacyElementMixin(Polymer.Element) {
         static get is() {
@@ -91,7 +96,11 @@
                 this._gridOptions = agGrid.ComponentUtil.copyAttributesToGridOptions(this._gridOptions, this._attributes);
 
                 let gridParams = {
-                    globalEventListener: globalEventListener
+                    globalEventListener: globalEventListener,
+                    frameworkFactory: new PolymerFrameworkFactory(new agGrid.BaseFrameworkFactory(), new PolymerComponentFactory()),
+                    seedBeanInstances: {
+                        frameworkComponentWrapper: new PolymerFrameworkComponentWrapper()
+                    }
                 };
 
                 this._agGrid = new agGrid.Grid(this, this._gridOptions, gridParams);
