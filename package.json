@@ -1,6 +1,6 @@
 {
   "name": "ag-grid-polymer",
-  "version": "0.0.1-beta.1",
+  "version": "0.0.9",
   "description": "ag-Grid Polymer Web Component",
   "main": "index.js",
   "dependencies": {
