@@ -38,10 +38,8 @@ class PolymerComponentFactory {
     }
 
     adaptComponentToEditor(componentType) {
-
         let that = this;
         class CellEditor extends BaseGuiComponent {
-
             init(params) {
                 super.init(params);
             }
@@ -77,7 +75,6 @@ class PolymerComponentFactory {
                 }
             }
 
-
             createComponent() {
                 return that.createComponent(componentType);
             }
@@ -89,9 +86,12 @@ class PolymerComponentFactory {
     adaptComponentToFilter(componentType) {
         let that = this;
         class Filter extends BaseGuiComponent {
+            constructor() {
+                super();
+            }
+
             init(params) {
                 super.init(params);
-                this._componentRef.changeDetectorRef.detectChanges();
             }
 
             isFilterActive() {
@@ -131,7 +131,7 @@ class PolymerComponentFactory {
             }
 
             getFrameworkComponentInstance() {
-                return this._frameworkComponentInstance;
+                return this._agAwareComponent;
             }
 
             createComponent() {
