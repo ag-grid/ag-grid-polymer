@@ -37,6 +37,7 @@
 
             this._propertyMap = this.createPropertyMap();
 
+
             agGrid.ComponentUtil.ALL_PROPERTIES.forEach((property) => {
                 let observerName = property + 'PropertyChanged';
                 this[observerName] = (newVal) => {
@@ -70,7 +71,7 @@
             if (Object.keys(this._attributes).length === 0 && Object.keys(this._gridOptions).length === 0) {
                 setTimeout(() => {
                     this.initialiseGrid();
-                }, 100)
+                }, 0)
             } else {
                 this.initialiseGrid();
             }
