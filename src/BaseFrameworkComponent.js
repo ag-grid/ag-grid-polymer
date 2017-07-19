@@ -1,4 +1,8 @@
 class BaseGuiComponent {
+    constructor(element) {
+        this.element = element;
+    }
+
     init(params) {
         this._params = params;
 
@@ -21,6 +25,9 @@ class BaseGuiComponent {
     }
 
     createComponent() {
-        throw Error ("Method not implemented - abstract method")
+        if(!customElements.get(this.element)) {
+            console.error(`${this.element} not found in the registry - has it been registered?`)
+        }
+        return document.createElement(this.element);
     }
 }

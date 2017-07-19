@@ -14,6 +14,10 @@ class PolymerComponentFactory {
     adaptComponentToRenderer(componentType) {
         let that = this;
         class CellRenderer extends BaseGuiComponent {
+            constructor() {
+                super(componentType);
+            }
+
             init(params) {
                 super.init(params);
             }
@@ -28,10 +32,6 @@ class PolymerComponentFactory {
                     return false;
                 }
             }
-
-            createComponent() {
-                return that.createComponent(componentType);
-            }
         }
 
         return CellRenderer;
@@ -40,6 +40,10 @@ class PolymerComponentFactory {
     adaptComponentToEditor(componentType) {
         let that = this;
         class CellEditor extends BaseGuiComponent {
+            constructor() {
+                super(componentType);
+            }
+
             init(params) {
                 super.init(params);
             }
@@ -74,10 +78,6 @@ class PolymerComponentFactory {
                     this._agAwareComponent.focusOut();
                 }
             }
-
-            createComponent() {
-                return that.createComponent(componentType);
-            }
         }
 
         return CellEditor;
@@ -87,7 +87,7 @@ class PolymerComponentFactory {
         let that = this;
         class Filter extends BaseGuiComponent {
             constructor() {
-                super();
+                super(componentType);
             }
 
             init(params) {
@@ -133,16 +133,8 @@ class PolymerComponentFactory {
             getFrameworkComponentInstance() {
                 return this._agAwareComponent;
             }
-
-            createComponent() {
-                return that.createComponent(componentType);
-            }
         }
 
         return Filter;
-    }
-
-    createComponent(componentType) {
-        return document.createElement(componentType);
     }
 }

@@ -17,7 +17,7 @@ class PolymerFrameworkComponentWrapper {
             wrapper[methodName] = methodProxy
         }
 
-        let wrapper = new BaseGuiComponent();
+        let wrapper = new BaseGuiComponent(element);
         mandatoryMethodList.forEach((methodName => {
             addMethod(wrapper, methodName, true);
         }));
