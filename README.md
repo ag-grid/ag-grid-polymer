@@ -2,8 +2,6 @@
 
 This project contains the ag-Grid Polymer Component 
 
-# Note - This is still very much in the beta phase and is subject to change 
-
 See the [www.ag-grid.com](http://www.ag-grid.com) for an overview and full documentation.
 
 ## Installation 
