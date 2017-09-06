@@ -31,3 +31,4 @@ class BaseGuiComponent {
         return document.createElement(this.element);
     }
 }
+window.BaseGuiComponent =BaseGuiComponent;

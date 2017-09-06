@@ -100,3 +100,4 @@ class PolymerFrameworkFactory {
         this._baseFrameworkFactory.setTimeout(action, timeout);
     }
 }
+window.PolymerFrameworkFactory =PolymerFrameworkFactory;
