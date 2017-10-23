@@ -138,3 +138,4 @@ class PolymerComponentFactory {
         return Filter;
     }
 }
+window.PolymerComponentFactory =PolymerComponentFactory;

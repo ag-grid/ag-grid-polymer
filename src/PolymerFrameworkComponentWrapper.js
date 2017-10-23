@@ -31,3 +31,4 @@ class PolymerFrameworkComponentWrapper {
         return wrapper;
     }
 }
+window.PolymerFrameworkComponentWrapper =PolymerFrameworkComponentWrapper;
