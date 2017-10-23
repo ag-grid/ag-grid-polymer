@@ -25,10 +25,11 @@ class BaseGuiComponent {
     }
 
     createComponent() {
-        if(!customElements.get(this.element)) {
+        if (!customElements.get(this.element)) {
             console.error(`${this.element} not found in the registry - has it been registered?`)
         }
         return document.createElement(this.element);
     }
 }
-window.BaseGuiComponent =BaseGuiComponent;
+
+window.BaseGuiComponent = BaseGuiComponent;
