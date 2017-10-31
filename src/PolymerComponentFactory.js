@@ -13,6 +13,7 @@ class PolymerComponentFactory {
 
     adaptComponentToRenderer(componentType) {
         let that = this;
+
         class CellRenderer extends BaseGuiComponent {
             constructor() {
                 super(componentType);
@@ -39,6 +40,7 @@ class PolymerComponentFactory {
 
     adaptComponentToEditor(componentType) {
         let that = this;
+
         class CellEditor extends BaseGuiComponent {
             constructor() {
                 super(componentType);
@@ -85,6 +87,7 @@ class PolymerComponentFactory {
 
     adaptComponentToFilter(componentType) {
         let that = this;
+
         class Filter extends BaseGuiComponent {
             constructor() {
                 super(componentType);
@@ -138,3 +141,5 @@ class PolymerComponentFactory {
         return Filter;
     }
 }
+
+window.PolymerComponentFactory = PolymerComponentFactory;

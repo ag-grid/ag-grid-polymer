@@ -22,5 +22,6 @@
   ],
   "dependencies": {
     "ag-grid": "13.3.x"
+    "ag-grid": "^13.0.x"
   }
 }
