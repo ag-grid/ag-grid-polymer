@@ -2,7 +2,7 @@
   "name": "ag-grid-polymer",
   "description": "ag-Grid Polymer Web Component",
   "main": "index.js",
-  "version": "13.3.0",
+  "version": "14.1.0",
   "authors": [
     "Sean Landsman <sean@thelandsmans.com>"
   ],
@@ -21,6 +21,6 @@
     "tests"
   ],
   "dependencies": {
-    "ag-grid": "14.0.x"
+    "ag-grid": "14.1.x"
   }
 }
