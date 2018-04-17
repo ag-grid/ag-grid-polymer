@@ -2,7 +2,7 @@
   "name": "ag-grid-polymer",
   "description": "ag-Grid Polymer Web Component",
   "main": "index.js",
-  "version": "17.0.0",
+  "version": "17.1.0",
   "authors": [
     "Sean Landsman <sean@thelandsmans.com>"
   ],
