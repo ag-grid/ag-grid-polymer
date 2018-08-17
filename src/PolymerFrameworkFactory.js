@@ -30,6 +30,10 @@ class PolymerFrameworkFactory {
             return this._baseFrameworkFactory.colDefFilter(colDef);
         }
     }
+
+    setTimeout(action, timeout) {
+        this._baseFrameworkFactory.setTimeout(action, timeout);
+    }
 }
 
 window.PolymerFrameworkFactory = PolymerFrameworkFactory;
